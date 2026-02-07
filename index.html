@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Startup Draft - McMahon vs Rutgers</title>
+    <title>AI Startup Draft 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -18,6 +18,8 @@
             --accent-mcmahon-light: #fff5f3;
             --accent-rutgers: #059669;
             --accent-rutgers-light: #ecfdf5;
+            --accent-deepfern: #6366f1;
+            --accent-deepfern-light: #eef2ff;
             --equity-purple: #7c3aed;
             --equity-bg: #f3e8ff;
         }
@@ -49,7 +51,7 @@
 
         .badge {
             display: inline-block;
-            background: linear-gradient(135deg, var(--accent-mcmahon), var(--accent-rutgers));
+            background: linear-gradient(135deg, var(--accent-mcmahon), var(--accent-rutgers), var(--accent-deepfern));
             color: #fff;
             font-size: 11px;
             font-weight: 700;
@@ -66,13 +68,6 @@
             letter-spacing: -0.5px;
             margin-bottom: 12px;
             color: var(--text-primary);
-        }
-
-        .subtitle {
-            color: var(--text-secondary);
-            font-size: 15px;
-            max-width: 600px;
-            margin: 0 auto;
         }
 
         .draft-info {
@@ -97,16 +92,134 @@
             font-weight: 600;
         }
 
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
+        /* Landing Page Styles */
+        .landing-page {
+            display: block;
         }
 
-        @media (max-width: 1000px) {
-            .comparison-grid {
+        .landing-page.hidden {
+            display: none;
+        }
+
+        .startup-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            .startup-selector {
                 grid-template-columns: 1fr;
             }
+        }
+
+        .startup-option {
+            background: var(--bg-card);
+            border: 3px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 40px 32px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .startup-option:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .startup-option.mcmahon:hover {
+            border-color: var(--accent-mcmahon);
+        }
+
+        .startup-option.rutgers:hover {
+            border-color: var(--accent-rutgers);
+        }
+
+        .startup-option.deepfern:hover {
+            border-color: var(--accent-deepfern);
+        }
+
+        .startup-option .icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 auto 20px;
+        }
+
+        .startup-option.mcmahon .icon {
+            background: var(--accent-mcmahon);
+        }
+
+        .startup-option.rutgers .icon {
+            background: var(--accent-rutgers);
+        }
+
+        .startup-option.deepfern .icon {
+            background: var(--accent-deepfern);
+        }
+
+        .startup-option .name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .startup-option.mcmahon .name {
+            color: var(--accent-mcmahon);
+        }
+
+        .startup-option.rutgers .name {
+            color: var(--accent-rutgers);
+        }
+
+        .startup-option.deepfern .name {
+            color: var(--accent-deepfern);
+        }
+
+        .startup-option .tagline {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Detail Page Styles */
+        .detail-page {
+            display: none;
+        }
+
+        .detail-page.active {
+            display: block;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            margin-bottom: 24px;
+            transition: all 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: var(--bg-card-alt);
+            color: var(--text-primary);
         }
 
         .team-card {
@@ -115,6 +228,8 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .team-card.mcmahon {
@@ -123,6 +238,10 @@
 
         .team-card.rutgers {
             border-color: var(--accent-rutgers);
+        }
+
+        .team-card.deepfern {
+            border-color: var(--accent-deepfern);
         }
 
         .team-header {
@@ -136,6 +255,10 @@
 
         .team-card.rutgers .team-header {
             background: var(--accent-rutgers-light);
+        }
+
+        .team-card.deepfern .team-header {
+            background: var(--accent-deepfern-light);
         }
 
         .team-name {
@@ -152,6 +275,10 @@
 
         .team-card.rutgers .team-name {
             color: var(--accent-rutgers);
+        }
+
+        .team-card.deepfern .team-name {
+            color: var(--accent-deepfern);
         }
 
         .team-icon {
@@ -172,6 +299,10 @@
 
         .team-card.rutgers .team-icon {
             background: var(--accent-rutgers);
+        }
+
+        .team-card.deepfern .team-icon {
+            background: var(--accent-deepfern);
         }
 
         .team-desc {
@@ -310,20 +441,6 @@
             border: 2px solid #fff;
             z-index: 1;
         }
-
-        footer {
-            text-align: center;
-            margin-top: 48px;
-            padding: 24px;
-            color: var(--text-muted);
-            font-size: 12px;
-        }
-
-        footer .disclaimer {
-            max-width: 500px;
-            margin: 0 auto;
-            font-style: italic;
-        }
     </style>
 </head>
 <body>
@@ -338,8 +455,30 @@
             </div>
         </header>
 
-        <div class="comparison-grid">
-            <!-- McMahon Team -->
+        <!-- Landing Page -->
+        <div class="landing-page" id="landing">
+            <div class="startup-selector">
+                <div class="startup-option mcmahon" onclick="showStartup('mcmahon')">
+                    <div class="icon">M</div>
+                    <div class="name">McMahon.AI</div>
+                    <div class="tagline">Leverages LLMs to create solutions to complex workflow inefficiencies across industries.</div>
+                </div>
+                <div class="startup-option rutgers" onclick="showStartup('rutgers')">
+                    <div class="icon">S</div>
+                    <div class="name">Scale Rutgers</div>
+                    <div class="tagline">Harnesses AI to streamline day to day operations to improve alignment on general strategy and forecasting capabilities.</div>
+                </div>
+                <div class="startup-option deepfern" onclick="showStartup('deepfern')">
+                    <div class="icon">D</div>
+                    <div class="name">DeepFern</div>
+                    <div class="tagline">Pioneering next-generation neural architectures to unlock transformative value through human-centric AI solutions.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- McMahon Detail Page -->
+        <div class="detail-page" id="mcmahon-page">
+            <button class="back-button" onclick="showLanding()">← Back to all startups</button>
             <div class="team-card mcmahon">
                 <div class="team-header">
                     <div class="team-name">
@@ -563,8 +702,11 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Rutgers Team -->
+        <!-- Rutgers Detail Page -->
+        <div class="detail-page" id="rutgers-page">
+            <button class="back-button" onclick="showLanding()">← Back to all startups</button>
             <div class="team-card rutgers">
                 <div class="team-header">
                     <div class="team-name">
@@ -750,7 +892,7 @@
                                 —
                             </div>
                         </div>
-                        </div>
+                    </div>
 
                     <!-- Intern 1: B Chen -->
                     <div class="role-card">
@@ -820,6 +962,287 @@
             </div>
         </div>
 
+        <!-- DeepFern Detail Page -->
+        <div class="detail-page" id="deepfern-page">
+            <button class="back-button" onclick="showLanding()">← Back to all startups</button>
+            <div class="team-card deepfern">
+                <div class="team-header">
+                    <div class="team-name">
+                        <div class="team-icon">D</div>
+                        DeepFern
+                    </div>
+                    <p class="team-desc">Pioneering next-generation neural architectures to unlock transformative value through human-centric AI solutions.</p>
+                </div>
+                <div class="roles-list">
+                    <!-- Software Engineer 1: Gabriel -->
+                    <div class="role-card">
+                        <div class="role-header">
+                            <div class="avatar">
+                                <svg viewBox="0 0 48 48" width="48" height="48">
+                                    <circle cx="24" cy="24" r="24" fill="#10b981"/>
+                                    <circle cx="24" cy="26" r="14" fill="#fcd5a1"/>
+                                    <circle cx="18" cy="22" r="3" fill="#fff"/>
+                                    <circle cx="30" cy="22" r="3" fill="#fff"/>
+                                    <circle cx="18" cy="22" r="1.5" fill="#1e293b"/>
+                                    <circle cx="30" cy="22" r="1.5" fill="#1e293b"/>
+                                    <path d="M19 32 Q24 36 29 32" stroke="#1e293b" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                    <path d="M10 12 Q24 6 38 12 L36 8 Q24 2 12 8 Z" fill="#4b5563"/>
+                                </svg>
+                            </div>
+                            <div class="role-info">
+                                <div class="role-name">Gabriel</div>
+                                <div class="role-title">Software Engineer 1</div>
+                            </div>
+                            <div class="equity-badge">
+                                <span class="label">Equity</span>
+                                3%
+                            </div>
+                        </div>
+                        <div class="role-desc">
+                            <span class="tag">120k Kč salary</span>
+                        </div>
+                    </div>
+
+                    <!-- Software Engineer 2: Nunayon -->
+                    <div class="role-card">
+                        <div class="role-header">
+                            <div class="avatar">
+                                <svg viewBox="0 0 48 48" width="48" height="48">
+                                    <circle cx="24" cy="24" r="24" fill="#8b5cf6"/>
+                                    <circle cx="24" cy="26" r="14" fill="#fde0d0"/>
+                                    <circle cx="18" cy="23" r="2.5" fill="#1e293b"/>
+                                    <circle cx="30" cy="23" r="2.5" fill="#1e293b"/>
+                                    <path d="M20 32 Q24 35 28 32" stroke="#1e293b" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                    <path d="M10 10 Q24 4 38 10 L36 14 Q24 8 14 14 Z" fill="#1e293b"/>
+                                </svg>
+                            </div>
+                            <div class="role-info">
+                                <div class="role-name">Nunayon</div>
+                                <div class="role-title">Software Engineer 2</div>
+                            </div>
+                            <div class="equity-badge">
+                                <span class="label">Equity</span>
+                                2.5%
+                            </div>
+                        </div>
+                        <div class="role-desc">
+                            <span class="tag">£100k salary</span>
+                            <span class="tag">Remote work clause</span>
+                        </div>
+                    </div>
+
+                    <!-- Head of Sales: Freakbob -->
+                    <div class="role-card">
+                        <div class="role-header">
+                            <div class="avatar">
+                                <svg viewBox="0 0 48 48" width="48" height="48">
+                                    <circle cx="24" cy="24" r="24" fill="#f59e0b"/>
+                                    <circle cx="24" cy="26" r="14" fill="#fcd5a1"/>
+                                    <circle cx="16" cy="22" r="4" fill="#fff"/>
+                                    <circle cx="32" cy="22" r="4" fill="#fff"/>
+                                    <circle cx="16" cy="22" r="2" fill="#1e293b"/>
+                                    <circle cx="32" cy="22" r="2" fill="#1e293b"/>
+                                    <path d="M18 33 Q24 38 30 33" stroke="#1e293b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                    <path d="M8 14 Q24 6 40 14" stroke="#78350f" stroke-width="5" fill="none" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div class="role-info">
+                                <div class="role-name">Freakbob</div>
+                                <div class="role-title">Head of Sales</div>
+                            </div>
+                            <div class="equity-badge">
+                                <span class="label">Equity</span>
+                                2%
+                            </div>
+                        </div>
+                        <div class="role-desc">
+                            <span class="tag">£90k salary</span>
+                            <span class="tag">10 months paid annual leave</span>
+                        </div>
+                    </div>
+
+                    <!-- Strategy: Paddy Ryan -->
+                    <div class="role-card">
+                        <div class="role-header">
+                            <div class="avatar">
+                                <svg viewBox="0 0 48 48" width="48" height="48">
+                                    <circle cx="24" cy="24" r="24" fill="#22c55e"/>
+                                    <circle cx="24" cy="26" r="14" fill="#fde0d0"/>
+                                    <circle cx="18" cy="22" r="2.5" fill="#1e293b"/>
+                                    <circle cx="30" cy="22" r="2.5" fill="#1e293b"/>
+                                    <path d="M19 32 Q24 35 29 32" stroke="#1e293b" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                    <path d="M12 10 Q24 4 36 10 L34 14 Q24 8 14 14 Z" fill="#b45309"/>
+                                </svg>
+                            </div>
+                            <div class="role-info">
+                                <div class="role-name">Paddy Ryan</div>
+                                <div class="role-title">Strategy</div>
+                            </div>
+                            <div class="equity-badge">
+                                <span class="label">Equity</span>
+                                1.5%
+                            </div>
+                        </div>
+                        <div class="role-desc">
+                            <span class="tag">£75k salary</span>
+                            <span class="tag">Innovator/Disruptor</span>
+                            <span class="tag">Creative Solutions</span>
+                        </div>
+                    </div>
+
+                    <!-- AI Ethics Consultant: Robson -->
+                    <div class="role-card">
+                        <div class="role-header">
+                            <div class="avatar">
+                                <svg viewBox="0 0 48 48" width="48" height="48">
+                                    <circle cx="24" cy="24" r="24" fill="#0ea5e9"/>
+                                    <circle cx="24" cy="26" r="14" fill="#fcd5a1"/>
+                                    <rect x="12" y="18" width="10" height="7" rx="2" fill="#1e293b" opacity="0.8"/>
+                                    <rect x="26" y="18" width="10" height="7" rx="2" fill="#1e293b" opacity="0.8"/>
+                                    <rect x="14" y="20" width="6" height="4" rx="1" fill="#fef3c7"/>
+                                    <rect x="28" y="20" width="6" height="4" rx="1" fill="#fef3c7"/>
+                                    <line x1="22" y1="21.5" x2="26" y2="21.5" stroke="#1e293b" stroke-width="1.5"/>
+                                    <path d="M20 33 Q24 36 28 33" stroke="#1e293b" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                    <path d="M12 10 Q24 4 36 10 L34 14 Q24 8 14 14 Z" fill="#6b7280"/>
+                                </svg>
+                            </div>
+                            <div class="role-info">
+                                <div class="role-name">Robson</div>
+                                <div class="role-title">AI Ethics Consultant</div>
+                            </div>
+                            <div class="equity-badge">
+                                <span class="label">Equity</span>
+                                1%
+                            </div>
+                        </div>
+                        <div class="role-desc">
+                            <span class="tag">£5k/month retainer</span>
+                            <span class="tag">£2k bonus per paper published</span>
+                        </div>
+                    </div>
+
+                    <!-- HR: Brett -->
+                    <div class="role-card">
+                        <div class="role-header">
+                            <div class="avatar">
+                                <svg viewBox="0 0 48 48" width="48" height="48">
+                                    <circle cx="24" cy="24" r="24" fill="#ef4444"/>
+                                    <circle cx="24" cy="26" r="14" fill="#fcd5a1"/>
+                                    <circle cx="18" cy="22" r="2.5" fill="#1e293b"/>
+                                    <circle cx="30" cy="22" r="2.5" fill="#1e293b"/>
+                                    <path d="M18 32 Q24 36 30 32" stroke="#1e293b" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                    <path d="M10 10 Q24 4 38 10 L36 8 Q24 2 12 8 Z" fill="#92400e"/>
+                                    <rect x="22" y="4" width="4" height="8" rx="1" fill="#fbbf24"/>
+                                </svg>
+                            </div>
+                            <div class="role-info">
+                                <div class="role-name">Brett</div>
+                                <div class="role-title">HR</div>
+                            </div>
+                            <div class="equity-badge no-equity">
+                                <span class="label">Equity</span>
+                                —
+                            </div>
+                        </div>
+                        <div class="role-desc">
+                            <span class="tag">Sensitivity training</span>
+                            <span class="tag">Hugs</span>
+                            <span class="tag">Anti-soy kitchen policy</span>
+                            <span class="tag">Weekly testosterone administration</span>
+                        </div>
+                    </div>
+
+                    <!-- Intern 1: Nikolai -->
+                    <div class="role-card">
+                        <div class="role-header">
+                            <div class="avatar">
+                                <svg viewBox="0 0 48 48" width="48" height="48">
+                                    <circle cx="24" cy="24" r="24" fill="#6366f1"/>
+                                    <circle cx="24" cy="26" r="14" fill="#fde0d0"/>
+                                    <circle cx="17" cy="22" r="3" fill="#fff"/>
+                                    <circle cx="31" cy="22" r="3" fill="#fff"/>
+                                    <circle cx="17" cy="22" r="1.5" fill="#1e293b"/>
+                                    <circle cx="31" cy="22" r="1.5" fill="#1e293b"/>
+                                    <path d="M20 33 Q24 35 28 33" stroke="#1e293b" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                                    <path d="M12 10 Q24 4 36 10 L34 14 Q24 8 14 14 Z" fill="#d4a574"/>
+                                </svg>
+                                <div class="intern-badge">i</div>
+                            </div>
+                            <div class="role-info">
+                                <div class="role-name">Nikolai</div>
+                                <div class="role-title">Intern 1</div>
+                            </div>
+                            <div class="equity-badge no-equity">
+                                <span class="label">Equity</span>
+                                —
+                            </div>
+                        </div>
+                        <div class="role-desc">
+                            Sideline developing cutting edge Text-to-Meow software
+                            <br><span class="tag">Viral marketing strategy</span>
+                        </div>
+                    </div>
+
+                    <!-- Intern 2: Marmalade (Dog) -->
+                    <div class="role-card">
+                        <div class="role-header">
+                            <div class="avatar">
+                                <svg viewBox="0 0 48 48" width="48" height="48">
+                                    <circle cx="24" cy="24" r="24" fill="#f97316"/>
+                                    <!-- Dog face -->
+                                    <ellipse cx="24" cy="28" rx="14" ry="12" fill="#d4a574"/>
+                                    <!-- Ears -->
+                                    <ellipse cx="10" cy="18" rx="6" ry="10" fill="#8b5a2b"/>
+                                    <ellipse cx="38" cy="18" rx="6" ry="10" fill="#8b5a2b"/>
+                                    <!-- Inner ears -->
+                                    <ellipse cx="10" cy="20" rx="3" ry="5" fill="#d4a574"/>
+                                    <ellipse cx="38" cy="20" rx="3" ry="5" fill="#d4a574"/>
+                                    <!-- Eyes -->
+                                    <circle cx="18" cy="24" r="4" fill="#fff"/>
+                                    <circle cx="30" cy="24" r="4" fill="#fff"/>
+                                    <circle cx="18" cy="24" r="2.5" fill="#1e293b"/>
+                                    <circle cx="30" cy="24" r="2.5" fill="#1e293b"/>
+                                    <circle cx="19" cy="23" r="1" fill="#fff"/>
+                                    <circle cx="31" cy="23" r="1" fill="#fff"/>
+                                    <!-- Nose -->
+                                    <ellipse cx="24" cy="32" rx="4" ry="3" fill="#1e293b"/>
+                                    <!-- Tongue -->
+                                    <ellipse cx="24" cy="38" rx="3" ry="4" fill="#ff6b6b"/>
+                                </svg>
+                                <div class="intern-badge">i</div>
+                            </div>
+                            <div class="role-info">
+                                <div class="role-name">Marmalade</div>
+                                <div class="role-title">Intern 2</div>
+                            </div>
+                            <div class="equity-badge no-equity">
+                                <span class="label">Equity</span>
+                                —
+                            </div>
+                        </div>
+                        <div class="role-desc">
+                            Will be fired for workplace sexism within a month of product launch date
+                            <br><span class="tag">Search and Retrieval</span>
+                            <span class="tag">Security</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function showStartup(startup) {
+            document.getElementById('landing').classList.add('hidden');
+            document.getElementById(startup + '-page').classList.add('active');
+        }
+
+        function showLanding() {
+            document.getElementById('landing').classList.remove('hidden');
+            document.querySelectorAll('.detail-page').forEach(page => {
+                page.classList.remove('active');
+            });
+        }
+    </script>
 </body>
 </html>
